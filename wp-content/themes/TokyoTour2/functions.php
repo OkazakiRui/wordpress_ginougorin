@@ -1,4 +1,32 @@
 <?php
+
+// カスタム投稿を作成
+function custom () {
+  $support = [
+    "title",
+    "editor",
+    "thumbnail"
+  ];
+  register_post_type("test", array(
+    "label" => "観光名所",
+    "public" => true,
+    "menu_position" => 5,
+    "supports" => $support
+  ));
+  register_taxonomy("test_cat", "test", array(
+    "label" => "エリアの機能",
+    "show_ui" => true,
+    "public" => true
+  ));
+  register_taxonomy("test_tag", "test", array(
+    "label" => "ジャンルの機能",
+    "show_ui" => true,
+    "public" => true
+  ));
+}
+
+add_action("init", "custom");
+
 add_action( 'after_setup_theme', 'blankslate_setup' );
 function blankslate_setup() {
 load_theme_textdomain( 'blankslate', get_template_directory() . '/languages' );
